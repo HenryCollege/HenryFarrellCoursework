@@ -24,12 +24,13 @@
                 if (response.hasOwnProperty("Error")) { //checks if response from server has a key "Error"
                     alert(JSON.stringify(response));    // if it does, convert JSON object to string and alert
                 } else {
-                    formatExerciseist(response);
+                    formatExerciseList(response);
                 }
             });
         }
 
         function formatExerciseList(response){
+            console.log(response);
             console.log("invoked formatExerciseList()");
 
             //write code here to create a table with all the exercises
