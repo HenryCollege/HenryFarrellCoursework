@@ -18,7 +18,7 @@ public class Patient {
 
     @POST
     @Path("add")
-    public String foodAdd(@FormDataParam("PatientID") Integer PatientID, @FormDataParam("firstName") String firstName, @FormDataParam("lastName") String lastName , @FormDataParam("DOB") String DOB{
+    public String foodAdd(@FormDataParam("PatientID") Integer PatientID, @FormDataParam("firstName") String firstName, @FormDataParam("lastName") String lastName , @FormDataParam("DOB") String DOB){
         System.out.println("Invoked Patient.patientAdd()");
         try {
             PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Patients (PatientID, FirstName, LastName , DOB) VALUES (?, ?,?,?)");
@@ -35,3 +35,4 @@ public class Patient {
         }
 
     }
+}
