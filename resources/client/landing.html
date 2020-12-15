@@ -36,7 +36,7 @@
             //write code here to create a table with all the exercises
             let dataHTML = "";                                             //clear the string
             for (let item of response) {                            //creates a table with rows for every item in JSON array and a button - how cool?  Very
-                dataHTML += "<tr><td>" + item.Condition + "</td><td>" + item.BodyPart + "</td><td>";
+                dataHTML += "<tr><td>" + item.PatientID +  "<td>" + item.ExerciseID + "<td>" + item.Name + "<td>" + item.BodyPart + "<td>" + item.Age + "<td>" + item.Difficulty + "<td>" + item.Condition + "<td>" + item.Benefits + "<td>" + item.RecommendedReps + "<td>" + item.Video + "<td>" + item.Image + "</td><tr>";
             }
             document.getElementById("tbl").innerHTML = dataHTML;
 
