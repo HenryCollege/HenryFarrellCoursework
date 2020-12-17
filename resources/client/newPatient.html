@@ -3,13 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>New Patient</title>
+    <link href="css/style.css" rel="stylesheet">
+
+    <script>
+        "use strict";
+
+        function postPatientAdd() {
+            console.log("Invoked postPatientAdd()");
+
+            const formData = new FormData(document.getElementById('newPatientForm'));
+            var url = "/patient/add";
+
+            fetch(url, {
+                method: "POST",
+                body: formData,
+            }).then(response => {
+                return response.json()
+            }).then(response => {
+                if (response.hasOwnProperty("Error")) {   //checks if response from server has a key "Error"
+                    alert(JSON.stringify(response));        // if it does, convert JSON object to string and alert
+                } else {
+                    window.open("/client/index.html", "_self");   //if not open this page (for example!)
+                }
+            });
+
+        }
+
+    </script>
+
+
+
 </head>
 <body>
+
+<form id="newPatientForm">
+    <div class="newPatientDiv">
+        <label for="newPatientFirstName">firstName: </label>
+        <input type="text" name="firstName" id="newPatientFirstName">
+    </div>
+    <div class="newPatientDiv">
+        <label for="newPatientLastName">lastName: </label>
+        <input type="text" name="lastName" id="newPatientLastName">
+    </div>
+
+    <div class="newPatientDiv">
+        <label for="DOB">DOB: </label>
+        <input type="text" name="DOB" id="DOB">
+    </div>
+
+</form>
+
+<button onclick="postPatientAdd()">Push to database </button>
 
 <div class="backToIndex">
     <button class = "backToIndexButton" onclick=" window.location.href='index.html';"> Back to Index</button>
 
 </div>
-
 </body>
 </html>

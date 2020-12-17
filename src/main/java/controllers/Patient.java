@@ -3,11 +3,10 @@ package controllers;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import server.Main;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 
 @Path("patient/")
@@ -18,14 +17,16 @@ public class Patient {
 
     @POST
     @Path("add")
-    public String foodAdd(@FormDataParam("PatientID") Integer PatientID, @FormDataParam("firstName") String firstName, @FormDataParam("lastName") String lastName , @FormDataParam("DOB") String DOB){
+    public String patientAdd(@CookieParam("token") Cookie token , @FormDataParam("firstName") String firstName, @FormDataParam("lastName") String lastName , @FormDataParam("DOB") String DOB){
         System.out.println("Invoked Patient.patientAdd()");
+        if(User.isValidToken(token.getValue()) == false){
+            return "{\"Error\": \"Unable to create new item, please see server console for more info.\"}";
+        }
         try {
-            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Patients (PatientID, FirstName, LastName , DOB) VALUES (?, ?,?,?)");
-            ps.setInt(1, PatientID);
-            ps.setString(2, firstName);
-            ps.setString(3, lastName);
-            ps.setString(4,DOB);
+            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Patients (FirstName, LastName , DOB) VALUES (?, ?,?)");
+            ps.setString(1, firstName);
+            ps.setString(2, lastName);
+            ps.setString(3,DOB);
 
             ps.execute();
             return "{\"OK\": \"Added patient.\"}";

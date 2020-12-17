@@ -50,7 +50,7 @@ public class User {
         }
     }
 
-    public static boolean validToken(String token) {
+    public static boolean isValidToken(String token) {
         try {
             PreparedStatement ps = Main.db.prepareStatement("SELECT UserID FROM Users WHERE Token = ?");
             ps.setString(1, token);
