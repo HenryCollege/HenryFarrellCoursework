@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Demo page</title>
+    <title>Index Page</title>
     <link rel="stylesheet" type="text/css" href="/client/css/styles.css">
     <script src="/client/js/js.cookie.js"></script>
     <script src="/client/js/index.js"></script>
@@ -13,10 +13,30 @@
 <div id="content">
 
     <div id="pageHeader">
-
         <div id="loggedInDetails"></div>
+    </div>
 
-  Page for administrators
+    Physio Page
+
+    <div class="physioOptions">
+        <div id="goToNewPatient">
+            Create New Patient
+            <button class="newPatientButton" onclick=" window.location.href='newPatient.html';"> go to page</button>
+        </div>
+
+
+        <div class="goToAddNewExercise">
+            Create New Exercise
+            <button class="newExerciseButton" onclick=" window.location.href='newExercise.html';"> go to page</button>
+
+
+        </div>
+
+        <div class="goToAssignExercise">
+            Assign an Exercise
+            <button class="assignExerciseButton" onclick=" window.location.href='assignExercise.html';"> go to page</button>
+        </div>
+
 
 
     </div>

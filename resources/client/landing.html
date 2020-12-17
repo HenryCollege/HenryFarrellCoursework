@@ -35,7 +35,7 @@
             console.log("invoked formatExerciseList()");
 
             //write code here to create a table with all the exercises
-            let dataHTML = "<tr><td>PatientID</td><td>ExerciseID</td><td>Name</td><td>BodyPart</td><td>Age</td><td>Difficulty</td><td>Condition</td><td>Benefits</td><td>RecommendedReps</td><td>Video</td><td>Image</td></tr>";                                             //clear the string
+            let dataHTML = "<tr><th>PatientID</th><th>ExerciseID</th><th>Name</th><th>BodyPart</th><th>Age</th><th>Difficulty</th><th>Condition</th><th>Benefits</th><th>RecommendedReps</th><th>Video</th><th>Image</th></tr>";                                             //clear the string
             for (let item of response) {                            //creates a table with rows for every item in JSON array and a button - how cool?  Very
                 dataHTML += "<tr><td>" + item.PatientID +  "<td>" + item.ExerciseID + "<td>" + item.Name + "<td>" + item.BodyPart + "<td>" + item.Age + "<td>" + item.Difficulty + "<td>" + item.Condition + "<td>" + item.Benefits + "<td>" + item.RecommendedReps + "<td>" + item.Video + "<td>" + item.Image + "</td><tr>";
             }
