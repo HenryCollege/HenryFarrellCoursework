@@ -51,13 +51,14 @@ public class User {
     }
 
     public static boolean isValidToken(String token) {
+        System.out.println("Invoked isValidToken() ");
         try {
-            PreparedStatement ps = Main.db.prepareStatement("SELECT UserID FROM Users WHERE Token = ?");
+            PreparedStatement ps = Main.db.prepareStatement("SELECT UsersID FROM Users WHERE Token = ?");
             ps.setString(1, token);
-            ResultSet logoutResults = ps.executeQuery();
-            return logoutResults.next();
+            ResultSet results = ps.executeQuery();
+            return results.next();  //returns true if there are results
         } catch (Exception exception) {
-            System.out.println("Database error during /user/logout: " + exception.getMessage());
+            System.out.println("Error validating session token" + exception.getMessage());
             return false;
         }
     }

@@ -18,10 +18,17 @@ public class Patient {
     @POST
     @Path("add")
     public String patientAdd(@CookieParam("token") Cookie token , @FormDataParam("firstName") String firstName, @FormDataParam("lastName") String lastName , @FormDataParam("DOB") String DOB){
+
         System.out.println("Invoked Patient.patientAdd()");
-        if(User.isValidToken(token.getValue()) == false){
+
+        if (token == null) {
             return "{\"Error\": \"Unable to create new item, please see server console for more info.\"}";
         }
+
+       if(User.isValidToken(token.getValue()) == false){
+            return "{\"Error\": \"Unable to create new item, please see server console for more info.\"}";
+       }
+
         try {
             PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Patients (FirstName, LastName , DOB) VALUES (?, ?,?)");
             ps.setString(1, firstName);
