@@ -45,14 +45,14 @@ public class Patient {
     }
 
     @POST
-    @Path("delete/{patientID}")
-
-    public String deletePatient(@PathParam("patientID") int patientID) {
+    @Path("delete")
+    public String deletePatient(@FormDataParam("patientID") Integer patientID) {
         System.out.println("Invoked deletePatient()");
+
         try {
             PreparedStatement ps = Main.db.prepareStatement("DELETE FROM Patients WHERE PatientID = ?");
             ps.setInt(1, patientID);
-            ps.executeQuery();
+            ps.execute();
             return "{\"OK\": \"Patient deleted\"}";
         } catch (Exception exception) {
             System.out.println("Database error: " + exception.getMessage());
