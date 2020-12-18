@@ -17,7 +17,7 @@ public class Patient {
 
     @POST
     @Path("add")
-    public String patientAdd(@CookieParam("token") Cookie token , @FormDataParam("firstName") String firstName, @FormDataParam("lastName") String lastName , @FormDataParam("DOB") String DOB){
+    public String patientAdd(@CookieParam("token") Cookie token, @FormDataParam("firstName") String firstName, @FormDataParam("lastName") String lastName, @FormDataParam("DOB") String DOB) {
 
         System.out.println("Invoked Patient.patientAdd()");
 
@@ -25,15 +25,15 @@ public class Patient {
             return "{\"Error\": \"Unable to create new item, please see server console for more info.\"}";
         }
 
-       if(User.isValidToken(token.getValue()) == false){
+        if (User.isValidToken(token.getValue()) == false) {
             return "{\"Error\": \"Unable to create new item, please see server console for more info.\"}";
-       }
+        }
 
         try {
             PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Patients (FirstName, LastName , DOB) VALUES (?, ?,?)");
             ps.setString(1, firstName);
             ps.setString(2, lastName);
-            ps.setString(3,DOB);
+            ps.setString(3, DOB);
 
             ps.execute();
             return "{\"OK\": \"Added patient.\"}";
@@ -43,5 +43,21 @@ public class Patient {
         }
 
     }
-}
 
+    @POST
+    @Path("delete/{patientID}")
+
+    public String deletePatient(@PathParam("patientID") int patientID) {
+        System.out.println("Invoked deletePatient()");
+        try {
+            PreparedStatement ps = Main.db.prepareStatement("DELETE FROM Patients WHERE PatientID = ?");
+            ps.setInt(1, patientID);
+            ps.executeQuery();
+            return "{\"OK\": \"Patient deleted\"}";
+        } catch (Exception exception) {
+            System.out.println("Database error: " + exception.getMessage());
+            return "{\"Error\": \"Unable to delete item, please see server console for more info.\"}";
+        }
+    }
+
+}
