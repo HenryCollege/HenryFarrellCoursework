@@ -17,7 +17,7 @@ public class Patient {
 
     @POST
     @Path("add")
-    public String patientAdd(@CookieParam("token") Cookie token, @FormDataParam("firstName") String firstName, @FormDataParam("lastName") String lastName, @FormDataParam("DOB") String DOB) {
+    public String patientAdd(@CookieParam("token") Cookie token,@FormDataParam("userID") Integer userID, @FormDataParam("firstName") String firstName, @FormDataParam("lastName") String lastName, @FormDataParam("DOB") String DOB, @FormDataParam("patientLink") String patientLink  ) {
 
         System.out.println("Invoked Patient.patientAdd()");
 
@@ -30,10 +30,12 @@ public class Patient {
         }
 
         try {
-            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Patients (FirstName, LastName , DOB) VALUES (?, ?,?)");
-            ps.setString(1, firstName);
-            ps.setString(2, lastName);
-            ps.setString(3, DOB);
+            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Patients (UserID ,FirstName, LastName , DOB, PatientLink) VALUES (?, ?,?,?,?)");
+            ps.setInt(1,userID);
+            ps.setString(2, firstName);
+            ps.setString(3, lastName);
+            ps.setString(4, DOB);
+            ps.setString(5,patientLink);
 
             ps.execute();
             return "{\"OK\": \"Added patient.\"}";

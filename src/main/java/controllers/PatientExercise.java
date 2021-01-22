@@ -1,12 +1,15 @@
 package controllers;
 
 
+import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import server.Main;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -86,6 +89,35 @@ public class PatientExercise {
 
     }
 
+    @POST
+    @Path("add")
+    public String patientExerciseAdd(@CookieParam("token") Cookie token, @FormDataParam("PatientID") Integer PatientID, @FormDataParam("ExerciseID") Integer ExerciseID , @FormDataParam("DateSet") String DateSet , @FormDataParam("Repetitions") Integer Repetitions) {
+
+        System.out.println("Invoked Patient.patientExerciseAdd()");
+
+        if (token == null) {
+            return "{\"Error\": \"Unable to create new item, please see server console for more info.\"}";
+        }
+
+        if (User.isValidToken(token.getValue()) == false) {
+            return "{\"Error\": \"Unable to create new item, please see server console for more info.\"}";
+        }
+
+        try {
+            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO PatientExercises (PatientID, ExerciseID,DateSet,Repetitions) VALUES (?, ?,?,?)");
+            ps.setInt(1, PatientID);
+            ps.setInt(2, ExerciseID);
+            ps.setString(3 , DateSet);
+            ps.setInt(4, Repetitions);
+
+            ps.execute();
+            return "{\"OK\": \"Added patient.\"}";
+        } catch (Exception exception) {
+            System.out.println("Database error: " + exception.getMessage());
+            return "{\"Error\": \"Unable to create new item, please see server console for more info.\"}";
+        }
+
+    }
 
 
 
@@ -94,5 +126,7 @@ public class PatientExercise {
 
 
 
-}
+
+
+    }
 

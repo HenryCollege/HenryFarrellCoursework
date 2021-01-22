@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>New Patient</title>
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 
     <script>
         "use strict";
@@ -37,6 +37,12 @@
 <body>
 
 <form id="newPatientForm">
+
+    <div class="newPatientDiv">
+        <label for="newPatientUserID">UserID: </label>
+        <input type="text" name="userID" id="newPatientUserID">
+    </div>
+
     <div class="newPatientDiv">
         <label for="newPatientFirstName">firstName: </label>
         <input type="text" name="firstName" id="newPatientFirstName">
@@ -51,10 +57,18 @@
         <input type="text" name="DOB" id="DOB">
     </div>
 
+    <div class="newPatientDiv">
+        <label for="newPatientPatientLink">PatientLink: </label>
+        <input type="text" name="patientLink" id="newPatientPatientLink">
+    </div>
+
 </form>
 
-<button onclick="postPatientAdd()">Push to database </button>
+<a href="https://www.guidgenerator.com/online-guid-generator.aspx">guid generator</a>
 
+<div>
+<button onclick="postPatientAdd()">Push to database </button>
+</div>
 <div class="backToIndex">
     <button class = "backToIndexButton" onclick=" window.location.href='index.html';"> Back to Index</button>
 

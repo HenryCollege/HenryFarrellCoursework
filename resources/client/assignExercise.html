@@ -3,13 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Assign Exercises</title>
+    <link href="css/styles.css" rel="stylesheet">
+
+    <script>
+        "use strict";
+
+        function postPatientExerciseAdd() {
+            console.log("Invoked postPatientExerciseAdd()");
+
+            const formData = new FormData(document.getElementById('assignPatientExerciseForm'));
+            let url = "/patientexercise/add";
+
+            fetch(url, {
+                method: "POST",
+                body: formData,
+            }).then(response => {
+                return response.json()
+            }).then(response => {
+                if (response.hasOwnProperty("Error")) {   //checks if response from server has a key "Error"
+                    alert(JSON.stringify(response));        // if it does, convert JSON object to string and alert
+                } else {
+                    window.open("/client/index.html", "_self");   //if not open this page (for example!)
+                }
+            });
+
+        }
+
+    </script>
+
+
 </head>
 <body>
+<div align="center">
+<form id="assignPatientExerciseForm">
+
+    <div class="assignPatientExerciseDiv">
+        <label for="assignPatientExercisePatientID">PatientID: </label>
+        <input type="text" name="PatientID" id="assignPatientExercisePatientID">
+    </div>
+
+    <div class="assignPatientExerciseDiv">
+        <label for="assignPatientExerciseExerciseID">ExerciseID: </label>
+        <input type="text" name="ExerciseID" id="assignPatientExerciseExerciseID">
+    </div>
+
+    <div class="assignPatientExerciseDiv">
+        <label for="assignPatientExerciseDateSet">Date set: </label>
+        <input type="text" name="DateSet" id="assignPatientExerciseDateSet">
+    </div>
+
+    <div class="assignPatientExerciseDiv">
+        <label for="assignPatientExerciseRepetitions">Repetitions: </label>
+        <input type="text" name="Repetitions" id="assignPatientExerciseRepetitions">
+    </div>
+
+
+
+</form>
+
+<button onclick="postPatientExerciseAdd()">Push to database </button>
+
 
 <div class="backToIndex">
     <button class = "backToIndexButton" onclick=" window.location.href='index.html';"> Back to Index</button>
 
 </div>
-
+</div>
+</body>
 </body>
 </html>

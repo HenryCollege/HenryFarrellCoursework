@@ -1,0 +1,57 @@
+table{
+    width: 100%;
+    border: 1px solid black;
+}
+
+#patientExerciseTable{
+
+    padding-top: 30px;
+}
+
+
+.newPatientDiv{
+    padding-bottom: 30px;
+}
+
+button {
+    background-color: #9ed072; /* Green */
+    border: none;
+    font-family: "JetBrains Mono Medium";
+    color: #2c2e34;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+div {
+    height: 50px;
+    text-align: center;
+}
+
+body{
+    text-align: center;
+    background-color: #2c2e34;
+    color: #FFFFFF;
+    font-family: "JetBrains Mono";
+}
+
+input[type="text"]
+{
+    font-size:18px;
+    font-family: "JetBrains Mono Medium";
+}
+#deletePatientPage{
+    padding-top: 30px;
+
+}
+
+#deletePatientTitle{
+    padding-bottom: 10px;
+}
+
+a{
+    color: #9ed072;
+}

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Delete Patient</title>
+    <link href="css/styles.css" rel="stylesheet">
 
     <script>
         "use strict";
@@ -32,6 +33,11 @@
 
 </head>
 <body>
+<div id="deletePatientPage">
+<div id="deletePatientTitle">
+    Delete Patient Page
+</div>
+
 
 <form id="deletePatientForm">
     <div class="deletePatientDiv">
@@ -39,13 +45,13 @@
         <input type="text" name="patientID" id="deletePatientID">
     </div>
 </form>
-
+<div>
 <button onclick="postDeletePatient()">Delete From database </button>
-
+</div>
 <div class="backToIndex">
     <button class = "backToIndexButton" onclick=" window.location.href='index.html';"> Back to Index</button>
 
 </div>
-
+</div>
 </body>
 </html>
