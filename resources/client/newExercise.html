@@ -4,8 +4,93 @@
     <meta charset="UTF-8">
     <title>Upload A New Exercise</title>
     <link href="css/styles.css" rel="stylesheet">
+
+    <script>
+        "use strict";
+
+        function postExerciseAdd() {
+            console.log("Invoked postExerciseAdd()");
+
+            const formData = new FormData(document.getElementById('newExerciseForm'));
+            var url = "/exercise/add";
+
+            fetch(url, {
+                method: "POST",
+                body: formData,
+            }).then(response => {
+                return response.json()
+            }).then(response => {
+                if (response.hasOwnProperty("Error")) {   //checks if response from server has a key "Error"
+                    alert(JSON.stringify(response));        // if it does, convert JSON object to string and alert
+                } else {
+                    window.open("/client/index.html", "_self");   //if not open this page (for example!)
+                }
+            });
+
+        }
+
+    </script>
+
+
+
 </head>
 <body>
+
+
+<form id="newExerciseForm">
+    <div class="newExerciseDiv">
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name">
+    </div>
+
+    <div class="newExerciseDiv">
+        <label for="bodyPart">Body Part: </label>
+        <input type="text" name="bodyPart" id="bodyPart">
+    </div>
+
+    <div class="newExerciseDiv">
+        <label for="age">Age: </label>
+        <input type="text" name="age" id="age">
+    </div>
+
+
+    <div class="newExerciseDiv">
+        <label for="difficulty">difficulty: </label>
+        <input type="text" name="difficulty" id="difficulty">
+    </div>
+
+    <div class="newExerciseDiv">
+        <label for="condition">Condition: </label>
+        <input type="text" name="condition" id="condition">
+    </div>
+
+    <div class="newExerciseDiv">
+        <label for="benefits">benefits: </label>
+        <input type="text" name="benefits" id="benefits">
+    </div>
+
+    <div class="newExerciseDiv">
+        <label for="recommendedReps">Recommended Reps: </label>
+        <input type="text" name="recommendedReps" id="recommendedReps">
+    </div>
+
+    <div class="newExerciseDiv">
+        <label for="video">video (enter link): </label>
+        <input type="text" name="video" id="video">
+    </div>
+
+    <div class="newExerciseDiv">
+        <label for="image">image(enter link): </label>
+        <input type="text" name="image" id="image">
+    </div>
+
+</form>
+
+<div>
+<button onclick="postExerciseAdd()">Push to database </button>
+</div>
+
+
 
 
 

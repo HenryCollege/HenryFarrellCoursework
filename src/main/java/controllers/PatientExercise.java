@@ -51,14 +51,16 @@ public class PatientExercise {
                     "PatientExercises.PatientID , " +   //1
                     "Exercises.ExerciseID, " +          //2
                     "Name, " +                          //3
-                    "BodyPart, " +                      //4
-                    "Age, " +                           //5
-                    "Difficulty, " +                    //6
-                    "Condtion, " +                      //7
-                    "Benefits, " +                      //8
-                    "RecommendedReps, " +               //9
-                    "Video, " +                         //10
-                    "Image " +                          //11
+                    "PatientExercises.DateSet " +       //4
+                    "BodyPart, " +                      //5
+                    "Age, " +                           //6
+                    "Difficulty, " +                    //7
+                    "Condition, " +                      //8
+                    "Benefits, " +                      //9
+                    "RecommendedReps, " +               //10
+                    "Video, " +                         //11
+                    "Image " +                          //12
+
                         "FROM PatientExercises " +
                         "JOIN Exercises ON main.PatientExercises.ExerciseID = main.Exercises.ExerciseID " +
                         "where patientID = ?;");
@@ -70,14 +72,14 @@ public class PatientExercise {
                 row.put("PatientID", results.getInt(1));
                 row.put("ExerciseID", results.getInt(2));
                 row.put("Name", results.getString(3));
-                row.put("BodyPart", results.getString(4));
-                row.put("Age", results.getString(5));
-                row.put("Difficulty", results.getInt(6));
-                row.put("Condition", results.getString(7));
-                row.put("Benefits", results.getString(8));
-                row.put("RecommendedReps", results.getInt(9));
-                row.put("Video", results.getString(10));
-                row.put("Image", results.getString(11));
+                row.put("DateSet", results.getString(4));
+                row.put("BodyPart", results.getString(5));
+                row.put("Age", results.getString(6));
+                row.put("Difficulty", results.getInt(7));
+                row.put("Condition", results.getString(8));
+                row.put("Benefits", results.getString(9));
+                row.put("RecommendedReps", results.getInt(10));
+                row.put("Video", results.getString(11));
                 response.add(row);
             }
             return response.toString();

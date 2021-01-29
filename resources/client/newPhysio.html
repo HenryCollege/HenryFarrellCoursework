@@ -4,6 +4,33 @@
     <meta charset="UTF-8">
     <title>Sign Up as a Physio</title>
     <link href="css/styles.css" rel="stylesheet">
+
+
+    <script>
+        "use strict";
+
+        function postUserAdd() {
+            console.log("Invoked postUserAdd()");
+
+            const formData = new FormData(document.getElementById('signUpForm'));
+            var url = "/user/add";
+
+            fetch(url, {
+                method: "POST",
+                body: formData,
+            }).then(response => {
+                return response.json()
+            }).then(response => {
+                if (response.hasOwnProperty("Error")) {   //checks if response from server has a key "Error"
+                    alert(JSON.stringify(response));        // if it does, convert JSON object to string and alert
+                } else {
+                    window.open("/client/login.html", "_self");   //if not open this page (for example!)
+                }
+            });
+
+        }
+
+    </script>
 </head>
 <body>
 
@@ -27,10 +54,9 @@
         <input type="lastName" name="lastName" id="lastName">
     </div>
 
-    <div class="signUpDiv">
-        <input type="submit" value="signUp" id="signUpButton" onclick=" window.location.href='login.html'">
-    </div>
 </form>
+
+<button onclick="postUserAdd()">Push to database </button>
 
 <div class="backToLogin">
     <button class = "backToLoginButton" onclick=" window.location.href='login.html';"> Back to Login</button>

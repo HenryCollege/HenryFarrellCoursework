@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import server.Main;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -97,5 +98,41 @@ public class User {
             return "{\"error\": \"Server side error!\"}";
         }
 
-    }}
+    }
+
+    @POST
+    @Path("add")
+    public String UserAdd( @FormDataParam("username") String username, @FormDataParam("password") String password, @FormDataParam("firstName") String firstName, @FormDataParam("lastName") String lastName  ) {
+
+        System.out.println("Invoked Patient.patientAdd()");
+
+        try {
+            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Users (Username, Password, FirstName, LastName) VALUES (?, ?,?,?)");
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setString(3, firstName);
+            ps.setString(4, lastName);
+
+            ps.execute();
+            return "{\"OK\": \"Added patient.\"}";
+        } catch (Exception exception) {
+            System.out.println("Database error: " + exception.getMessage());
+            return "{\"Error\": \"Unable to create new item, please see server console for more info.\"}";
+        }
+
+    }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
 
