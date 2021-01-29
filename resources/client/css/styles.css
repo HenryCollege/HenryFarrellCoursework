@@ -16,7 +16,7 @@ table{
 button {
     background-color: #9ed072; /* Green */
     border: none;
-    font-family: "JetBrains Mono Medium";
+    font-family: "Sans Serif";
     color: #2c2e34;
     padding: 15px 32px;
     text-align: center;
@@ -24,6 +24,7 @@ button {
     display: inline-block;
     margin: 4px 2px;
     cursor: pointer;
+
 }
 
 div {
@@ -35,13 +36,13 @@ body{
     text-align: center;
     background-color: #2c2e34;
     color: #FFFFFF;
-    font-family: "JetBrains Mono";
+    font-family: "Sans Serif";
 }
 
 input[type="text"]
 {
     font-size:18px;
-    font-family: "JetBrains Mono Medium";
+    font-family: "Sans Serif";
 }
 #deletePatientPage{
     padding-top: 30px;
@@ -49,9 +50,34 @@ input[type="text"]
 }
 
 #deletePatientTitle{
-    padding-bottom: 10px;
+    padding-bottom: 30px;
 }
 
 a{
     color: #9ed072;
 }
+
+*{
+    font-size: large;
+
+}
+
+.physioOptions{
+    padding-top: 30px;
+}
+
+#goToNewPatient{
+padding-bottom: 0px;
+}
+.goToAddNewExercise{
+    padding-top: 50px;
+}
+
+.goToAssignExercise{
+    padding-top: 50px;
+}
+
+.goToDeletePatient{
+    padding-top: 50px;
+}
+
